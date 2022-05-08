@@ -10,8 +10,8 @@ exports.create = (req, res) => {
   }
 
   // Create a User
-  const { id, email, phone_number } = req.body;
-  const user = new User(id, email, phone_number);
+  const {id, email,first_name, last_name, password, phone, address, is_admin } = req.body;
+  const user = new User(id, email, first_name, last_name, password, phone, address, is_admin);
 
   // Save User in the database
   User.create(user, (err, data) => {
@@ -20,7 +20,7 @@ exports.create = (req, res) => {
         message:
           err.message || "Some error occurred while creating the User."
       });
-    else res.send(data);
+    else res.status(200).send(data);
   });
 };
 
