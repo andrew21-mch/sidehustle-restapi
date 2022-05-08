@@ -30,11 +30,11 @@ Clone the repository & change to the cloned folder
 
 Using HTTPS
 ```sh
-git clone https://github.com/desirekaleba/sidehustle-restapi.git && cd sidehustle-restapi
+git clone https://github.com/andrew21-mch/sidehustle-restapi.git && cd sidehustle-restapi
 ```
 Using SSH
 ```sh
-git clone git@github.com:desirekaleba/sidehustle-restapi.git && cd sidehustle-restapi
+git clone git@github.com:andrew21-mch/sidehustle-restapi.git && cd sidehustle-restapi
 ```
 Install dependencies
 ```sh
