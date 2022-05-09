@@ -7,7 +7,7 @@ const app = express();
 const userRoutes = require("./src/routes/user.routes");
 
 app.use(cors());
-app.use("api/users", userRoutes);
+
 
 // parse requests of content-type - application/json
 app.use(express.json());
