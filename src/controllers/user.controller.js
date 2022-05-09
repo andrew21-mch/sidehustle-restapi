@@ -1,4 +1,7 @@
 const User = require("../models/user.model.js");
+const { sign } = require("jsonwebtoken");
+const { findByEmail } = require("../models/user.model.js");
+const {compareSync} = require("bcrypt")
 
 // Create and Save a new User
 exports.create = (req, res) => {
@@ -23,6 +26,45 @@ exports.create = (req, res) => {
     else res.status(200).send(data);
   });
 };
+//login using email and password
+exports.login = (req, res) => {
+  // Validate request
+  $body = req.body;
+  findByEmail($body.email, (err, user) => {
+    if (err) {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the User."
+      });
+    }
+    if(!user){
+      res.status(404).send({
+        message: "Invalid email or password"
+      });
+    }
+    // const $result = compareSync($body.password, user.password);
+    // if ($result) {
+    //   user.password = undefined;
+
+    const token = sign({$result: user}, "secretKey", 
+    { expiresIn: "1h" }
+    );
+    return res.status(200).send({
+      message: "Successfully logged in",
+      token: token
+    });
+    // } else {
+    //   return res.status(401).send({
+    //     message: "Invalid email or password"
+    //   });
+    // }
+  });
+
+}
+
+
+
+
 
 // Retrieve all users from the database
 exports.findAll = (req, res) => {

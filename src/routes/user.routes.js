@@ -5,6 +5,7 @@ const userController = require('../controllers/user.controller');
 module.exports = app => {
   // Create a new User
   router.post("/", userController.create);
+  router.post("/login", userController.login);
 
   // Retrieve all Users
   router.get("/", userController.findAll);

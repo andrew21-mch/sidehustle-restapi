@@ -56,6 +56,24 @@ class User {
     });
   }
 
+  static findByEmail(email, result){
+    db.query(`SELECT * FROM users WHERE email = ?`, [email], (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log("found user: ", res[0]);
+        result(null, res[0]);
+        return;
+      }
+
+      //not found
+      result({kind: "not_found"}, null);
+    });
+  }
+
   static getAll(result) {
     db.query('SELECT * FROM users', (err, res) => {
       if (err) {
